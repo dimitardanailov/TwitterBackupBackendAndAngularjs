@@ -64,11 +64,13 @@ namespace TwitterWebApplication
         private TwitterAuthenticationOptions GetTwitterConfigurations()
         {
             string TwitterCallbackPath = ClientConfigurations.AppSettings.Setting<string>("TwitterCallbackURL");
+            string ConsumerKey = ClientConfigurations.AppSettings.Setting<string>("TwitterConsumerKey");
+            string ConsumerSecret = ClientConfigurations.AppSettings.Setting<string>("TwitterConsumerSecret");
 
             var options = new TwitterAuthenticationOptions
             {
-                ConsumerKey = "NSrnH0U6KQnZu06uCkXP9cRbF",
-                ConsumerSecret = "LnkPBAL2PJYU1FXFTyVik7ua3nqJnQ9LcC6zw2xDPhBUpaoD7u",
+                ConsumerKey = ConsumerKey,
+                ConsumerSecret = ConsumerSecret,
                 BackchannelCertificateValidator = null,
                 Provider = new TwitterAuthenticationProvider()
                 {
