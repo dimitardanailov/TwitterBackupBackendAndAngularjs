@@ -11,10 +11,12 @@ namespace TwitterWebApplicationEntities
 
         // Foreign Key
         [Required]
-        public int FollowedUserID { get; set; }
+        [MaxLength(128, ErrorMessage = "Maximum length is {0} characters.")]
+        public string FollowedUserID { get; set; }
 
         [Required]
-        public int FollowerUserID { get; set; }
+        [MaxLength(128, ErrorMessage = "Maximum length is {0} characters.")]
+        public string FollowerUserID { get; set; }
 
         [ForeignKey("FollowedUserID")]
         public virtual ApplicationUser FollowedUser { get; set; }

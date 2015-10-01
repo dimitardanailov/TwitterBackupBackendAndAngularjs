@@ -11,10 +11,12 @@ namespace TwitterWebApplicationEntities
 
         // Foreign Key
         [Required]
-        public int UserID { get; set; }
+        [MaxLength(128, ErrorMessage = "UserID should be must be {0} characters or less")]
+        public string UserID { get; set; }
 
         [Required]
-        [MinLength(10), MaxLength(140, ErrorMessage = "Text should be must be 60 characters or less")]
+        [MinLength(10, ErrorMessage = "Text should be at least {0} characters.")]
+        [MaxLength(140, ErrorMessage = "Maximum length is {0} characters.")]
         public string Text { get; set; }
 
         [ForeignKey("UserID")]
