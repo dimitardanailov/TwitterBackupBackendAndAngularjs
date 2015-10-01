@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using TwitterWebApplication.Models;
+using Microsoft.Owin.Security.Twitter;
 
 namespace TwitterWebApplication
 {
@@ -45,24 +46,44 @@ namespace TwitterWebApplication
             // This is similar to the RememberMe option when you log in.
             app.UseTwoFactorRememberBrowserCookie(DefaultAuthenticationTypes.TwoFactorRememberBrowserCookie);
 
-            // Uncomment the following lines to enable logging in with third party login providers
-            //app.UseMicrosoftAccountAuthentication(
-            //    clientId: "",
-            //    clientSecret: "");
+            var twitterOptions = GetTwitterConfigurations();
+            app.UseTwitterAuthentication(twitterOptions);
+        }
 
-            //app.UseTwitterAuthentication(
-            //   consumerKey: "",
-            //   consumerSecret: "");
+        /// <summary>
+        /// Current Configuration Update all necessary settings for Twitter.
+        /// Articles: 
+        /// http://www.oauthforaspnet.com/providers/twitter/
+        /// http://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
+        /// 
+        /// 
+        /// Twitter credentials should be stored in: <see cref="Security/AppSettingsSecrets.config"/>.
+        /// </summary>
+        /// <param name="app"></param>
+        /// <returns></returns>
+        private TwitterAuthenticationOptions GetTwitterConfigurations()
+        {
+            string TwitterCallbackPath = ClientConfigurations.AppSettings.Setting<string>("TwitterCallbackURL");
+            string ConsumerKey = ClientConfigurations.AppSettings.Setting<string>("TwitterConsumerKey");
+            string ConsumerSecret = ClientConfigurations.AppSettings.Setting<string>("TwitterConsumerSecret");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            var options = new TwitterAuthenticationOptions
+            {
+                ConsumerKey = ConsumerKey,
+                ConsumerSecret = ConsumerSecret,
+                BackchannelCertificateValidator = null,
+                Provider = new TwitterAuthenticationProvider()
+                {
+                    OnAuthenticated = async context =>
+                    {
+                        // These are then added as claims to the ClaimsIdentity which is available as Identity property of the context variable.
+                        context.Identity.AddClaim(new System.Security.Claims.Claim("urn:tokens:twitter:accesstoken", context.AccessToken));
+                        context.Identity.AddClaim(new System.Security.Claims.Claim("urn:tokens:twitter:accesstokensecret", context.AccessTokenSecret));
+                    }
+                }
+            };
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            return options;
         }
     }
 }
