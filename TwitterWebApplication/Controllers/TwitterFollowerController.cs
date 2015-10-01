@@ -7,7 +7,9 @@ using System.Web.Http;
 
 namespace TwitterWebApplication
 {
+    [Authorize]
     public class TwitterController : ApiController
     {
+
     }
 }

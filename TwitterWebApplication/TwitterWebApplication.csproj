@@ -263,6 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ProfileImages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -276,6 +277,10 @@
     <ProjectReference Include="..\ClientConfigurations\ClientConfigurations.csproj">
       <Project>{a9abadd4-a957-4ecb-a83d-92dad3503d0c}</Project>
       <Name>ClientConfigurations</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataStructure\DataStructure.csproj">
+      <Project>{6f186962-5311-4316-be71-40ffd9eb263b}</Project>
+      <Name>DataStructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

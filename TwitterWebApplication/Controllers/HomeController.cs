@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using Microsoft.AspNet.Identity;
+using System.Security.Claims;
 using System.Web.Mvc;
 
 namespace TwitterWebApplication.Controllers
@@ -9,8 +7,17 @@ namespace TwitterWebApplication.Controllers
     // [RequireHttps]
     public class HomeController : Controller
     {
+        [AllowAnonymous]
         public ActionResult Index()
         {
+            var claimsIdentity = HttpContext.User.Identity as ClaimsIdentity;
+            // Try to profile image
+            if (User.Identity.GetUserId() != null && claimsIdentity != null)
+            {
+                var claims = claimsIdentity.Claims;
+                // Download the twitter profile image
+            }
+
             return View();
         }
 

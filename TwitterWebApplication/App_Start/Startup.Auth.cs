@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using TwitterWebApplication.Models;
 using Microsoft.Owin.Security.Twitter;
+using DataStructure;
 
 namespace TwitterWebApplication
 {
@@ -55,7 +56,7 @@ namespace TwitterWebApplication
         /// Articles: 
         /// http://www.oauthforaspnet.com/providers/twitter/
         /// http://www.asp.net/mvc/overview/security/create-an-aspnet-mvc-5-app-with-facebook-and-google-oauth2-and-openid-sign-on
-        /// 
+        /// http://www.jerriepelser.com/blog/get-the-twitter-profile-image-using-the-asp-net-identity
         /// 
         /// Twitter credentials should be stored in: <see cref="Security/AppSettingsSecrets.config"/>.
         /// </summary>
@@ -64,13 +65,12 @@ namespace TwitterWebApplication
         private TwitterAuthenticationOptions GetTwitterConfigurations()
         {
             string TwitterCallbackPath = ClientConfigurations.AppSettings.Setting<string>("TwitterCallbackURL");
-            string ConsumerKey = ClientConfigurations.AppSettings.Setting<string>("TwitterConsumerKey");
-            string ConsumerSecret = ClientConfigurations.AppSettings.Setting<string>("TwitterConsumerSecret");
 
+            // Get Idea from http://www.jerriepelser.com/blog/get-the-twitter-profile-image-using-the-asp-net-identity
             var options = new TwitterAuthenticationOptions
             {
-                ConsumerKey = ConsumerKey,
-                ConsumerSecret = ConsumerSecret,
+                ConsumerKey = TwitterSettings.ConsumerKey,
+                ConsumerSecret = TwitterSettings.ConsumerSecret,
                 BackchannelCertificateValidator = null,
                 Provider = new TwitterAuthenticationProvider()
                 {
