@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wiki", "Wiki", "{8DD4A82C-5
 		Wiki\SSL.md = Wiki\SSL.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterApplicationLibrary", "TwitterApplicationLibrary\TwitterApplicationLibrary.csproj", "{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -36,6 +38,10 @@ Global
 		{A9ABADD4-A957-4ECB-A83D-92DAD3503D0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9ABADD4-A957-4ECB-A83D-92DAD3503D0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9ABADD4-A957-4ECB-A83D-92DAD3503D0C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

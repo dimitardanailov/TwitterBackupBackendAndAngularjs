@@ -9,6 +9,12 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TwitterWebApplication.Models;
+using TweetSharp;
+using ClientConfigurations;
+using System.Collections.Generic;
+using System.Net.Http;
+using System.Net;
+using System.IO;
 
 namespace TwitterWebApplication.Controllers
 {
@@ -374,6 +380,11 @@ namespace TwitterWebApplication.Controllers
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
+                        // Source: http://www.jerriepelser.com/blog/get-the-twitter-profile-image-using-the-asp-net-identity
+                        await StoreAuthTokenClaims(user);
+
+                        await DownloadTwitterProfileImage(user.Id);
+
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
@@ -450,6 +461,105 @@ namespace TwitterWebApplication.Controllers
                 return Redirect(returnUrl);
             }
             return RedirectToAction("Index", "Home");
+        }
+
+        /// <summary>
+        /// Method try to Store Twitter Claims Token.
+        /// Source: http://www.jerriepelser.com/blog/get-the-twitter-profile-image-using-the-asp-net-identity
+        /// 
+        /// Twitter initialization is created in <see cref="Startup"/>
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        private async Task StoreAuthTokenClaims(ApplicationUser user)
+        {
+            // Get the claims identity
+            ClaimsIdentity claimsIdentity =
+                await AuthenticationManager.GetExternalIdentityAsync(DefaultAuthenticationTypes.ExternalCookie);
+
+            if (claimsIdentity != null)
+            {
+                // Retrieve the existing claims
+                var currentClaims = await UserManager.GetClaimsAsync(user.Id);
+
+                // Get the list of access token related claims from the identity
+                var tokenClaims = claimsIdentity.Claims
+                    .Where(c => c.Type.StartsWith("urn:tokens:"));
+
+                // Save the access token related claims
+                foreach (var tokenClaim in tokenClaims)
+                {
+                    if (!currentClaims.Contains(tokenClaim))
+                    {
+                        await UserManager.AddClaimAsync(user.Id, tokenClaim);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Source: http://www.jerriepelser.com/blog/get-the-twitter-profile-image-using-the-asp-net-identity
+        /// https://github.com/jerriep/AspNetIdentitySocialProfileImage/blob/master/Controllers/AccountController.cs
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        private async Task DownloadTwitterProfileImage(string userId)
+        {
+            var identity = (ClaimsIdentity)User.Identity;
+            IEnumerable<Claim> claims = identity.Claims;
+
+            if (claims != null)
+            {
+                // Retrieve the twitter access token and claim
+                var accessTokenClaim = claims.FirstOrDefault(x => x.Type == TwitterSettings.AccessTokenClaimType);
+                var accessTokenSecretClaim = claims.FirstOrDefault(x => x.Type == TwitterSettings.AccessTokenSecretClaimType);
+
+                if (accessTokenClaim != null && accessTokenSecretClaim != null)
+                {
+                    // Initialize the Twitter client
+                    var service = new TwitterService(
+                        TwitterSettings.ConsumerKey,
+                        TwitterSettings.ConsumerSecret,
+                        accessTokenClaim.Value,
+                        accessTokenSecretClaim.Value
+                    );
+
+                    var profile = service.GetUserProfile(new GetUserProfileOptions());
+                    // Try to download user image.
+                    if (profile != null && !String.IsNullOrWhiteSpace(profile.ProfileImageUrlHttps))
+                    {
+                        string filename = Server.MapPath(string.Format("~/ProfileImages/{0}.jpeg", userId));
+                        await DownloadProfileImage(new Uri(profile.ProfileImageUrlHttps), filename);
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Download image.
+        /// </summary>
+        /// <param name="url">Image location.</param>
+        /// <param name="filename">Image filename</param>
+        /// <returns></returns>
+        private async Task DownloadProfileImage(Uri url, string filename)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                HttpResponseMessage response = await httpClient.GetAsync(url);
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    using (var fileStream = new FileStream(filename, FileMode.Create))
+                    {
+                        await response.Content.CopyToAsync(fileStream);
+                        fileStream.Close();
+                    }
+                }
+            }
+            catch (Exception exception)
+            {
+
+            }
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult

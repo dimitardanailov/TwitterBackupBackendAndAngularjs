@@ -1,0 +1,19 @@
+﻿
+@{
+    ViewBag.Title = "FavouriteList";
+}
+
+<section id="bodyContainer" ng-app="TwitterBackup"> 
+    <section id="content">
+        <section id="container" ng-controller="TwitterBackupFavouriteUsersCtrl">
+            Loaded
+        </section>
+    </section>
+</section>
+
+@section scripts {
+    @Scripts.Render("~/Scripts/angular.js")
+    @Scripts.Render("~/Scripts/app/twitter.js")
+}
+
+
