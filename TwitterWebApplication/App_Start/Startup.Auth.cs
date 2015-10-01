@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using TwitterWebApplication.Models;
 using Microsoft.Owin.Security.Twitter;
-using DataStructure;
+using ClientConfigurations;
 
 namespace TwitterWebApplication
 {

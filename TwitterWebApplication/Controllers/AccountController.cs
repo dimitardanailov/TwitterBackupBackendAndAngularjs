@@ -10,7 +10,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using TwitterWebApplication.Models;
 using TweetSharp;
-using DataStructure;
+using ClientConfigurations;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net;
