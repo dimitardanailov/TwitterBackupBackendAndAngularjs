@@ -51,7 +51,7 @@ This table store information for `Messages`.
 |UpdatedAt|DATETIME||NOT NULL|
 
   1. **MessageID** - the unique ID of the row which is used to access the data.
-  1. **UserID** - Reference to AspNetUser
+  1. **UserID** - Reference to [`AspNetUser`](#aspnetusers)
   1. **Text** - Message length can be with between 10 and 140 characters. 
   1. **CreatedAt** - Time and date when the value was first created.
   1. **UpdatedAt** - Time and date of the last change of field’s value.
@@ -71,8 +71,8 @@ This table store information for `Messages`.
 |UpdatedAt|DATETIME||NOT NULL|
 
   1. **FollowerID** - the unique ID of the row which is used to access the data.
-  1. **FollowedUserID** - Reference to [`AspNetUser`]((#aspnetusers)
-  1. **FollowerUserID** - Reference to [`AspNetUser`]((#aspnetusers)
+  1. **FollowedUserID** - Reference to [`AspNetUser`](#aspnetusers)
+  1. **FollowerUserID** - Reference to [`AspNetUser`](#aspnetusers)
   1. **CreatedAt** - Time and date when the value was first created.
   1. **UpdatedAt** - Time and date of the last change of field’s value.
   
