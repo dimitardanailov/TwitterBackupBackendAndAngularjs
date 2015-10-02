@@ -66,6 +66,7 @@ namespace TwitterWebApplicationRepositories
         public virtual void Insert(TEntity entity)
         {
             dbSet.Add(entity);
+            this.Context.SaveChanges();
         }
 
         public virtual void Update(TEntity entityToUpdate)

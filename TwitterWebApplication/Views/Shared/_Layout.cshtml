@@ -7,6 +7,7 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
+    <base href="/">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,7 +23,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Favourite List", "FavouriteList", "Home")</li>
+                    <li>@Html.ActionLink("TwitterBackup HomePage", "TwitterBackupHomePage", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

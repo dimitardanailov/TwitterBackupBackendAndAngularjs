@@ -102,10 +102,6 @@
       <Project>{d4887ca1-d51e-43ac-a9e2-3b300bf3ada8}</Project>
       <Name>TwitterWebApplicationEntities</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TwitterWebApplication\TwitterWebApplication.csproj">
-      <Project>{d8f42c8e-acd5-4d5b-afc8-999037ed47b1}</Project>
-      <Name>TwitterWebApplication</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

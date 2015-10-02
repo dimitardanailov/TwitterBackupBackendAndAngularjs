@@ -11,6 +11,8 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using TwitterWebApplication.Models;
+using TwitterWebApplicationDBContexts;
+using TwitterWebApplicationEntities;
 
 namespace TwitterWebApplication
 {

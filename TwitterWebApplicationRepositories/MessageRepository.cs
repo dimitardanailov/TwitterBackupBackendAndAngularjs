@@ -19,5 +19,9 @@ namespace TwitterWebApplicationRepositories
         {
             MessageContext = context;
         }
+
+        public MessageRepository() : base(new MessageDbContext())
+        {
+        }
     }
 }

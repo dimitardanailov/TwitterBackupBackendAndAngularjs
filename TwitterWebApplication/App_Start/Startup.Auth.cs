@@ -8,6 +8,8 @@ using Owin;
 using TwitterWebApplication.Models;
 using Microsoft.Owin.Security.Twitter;
 using ClientConfigurations;
+using TwitterWebApplicationDBContexts;
+using TwitterWebApplicationEntities;
 
 namespace TwitterWebApplication
 {
