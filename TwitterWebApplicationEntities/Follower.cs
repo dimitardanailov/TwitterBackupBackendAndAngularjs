@@ -4,7 +4,7 @@ using TwitterWebApplication.Models;
 
 namespace TwitterWebApplicationEntities
 {
-    class Follower: BaseModel
+    public class Follower : BaseModel
     {
         [Key]
         public int FollowerID { get; set; }

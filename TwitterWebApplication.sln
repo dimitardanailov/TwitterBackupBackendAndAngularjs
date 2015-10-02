@@ -24,6 +24,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wiki", "Wiki", "{8DD4A82C-5
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterApplicationLibrary", "TwitterApplicationLibrary\TwitterApplicationLibrary.csproj", "{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterWebApplicationEntities", "TwitterWebApplicationEntities\TwitterWebApplicationEntities.csproj", "{D4887CA1-D51E-43AC-A9E2-3B300BF3ADA8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterWebApplicationRepositories", "TwitterWebApplicationRepositories\TwitterWebApplicationRepositories.csproj", "{F5A1D901-95DA-4DBE-8EE6-D918FD2B3C20}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitterWebApplicationDBContexts", "TwitterWebApplicationDBContexts\TwitterWebApplicationDBContexts.csproj", "{669D8F3F-620F-4F4A-ABD1-0C7F378A57DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,6 +48,18 @@ Global
 		{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{654BFA01-EDBF-4C64-BCAB-D70E6DD3DD58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4887CA1-D51E-43AC-A9E2-3B300BF3ADA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4887CA1-D51E-43AC-A9E2-3B300BF3ADA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4887CA1-D51E-43AC-A9E2-3B300BF3ADA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4887CA1-D51E-43AC-A9E2-3B300BF3ADA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F5A1D901-95DA-4DBE-8EE6-D918FD2B3C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F5A1D901-95DA-4DBE-8EE6-D918FD2B3C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F5A1D901-95DA-4DBE-8EE6-D918FD2B3C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F5A1D901-95DA-4DBE-8EE6-D918FD2B3C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{669D8F3F-620F-4F4A-ABD1-0C7F378A57DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{669D8F3F-620F-4F4A-ABD1-0C7F378A57DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{669D8F3F-620F-4F4A-ABD1-0C7F378A57DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{669D8F3F-620F-4F4A-ABD1-0C7F378A57DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -4,7 +4,8 @@ using TwitterWebApplication.Models;
 
 namespace TwitterWebApplicationEntities
 {
-    class Message : BaseModel
+    [Table("Messages")]
+    public class ClientMessage : BaseModel
     {
         [Key]
         public int MessageID { get; set; }
