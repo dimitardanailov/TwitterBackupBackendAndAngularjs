@@ -17,8 +17,10 @@
                               ng-form=""
                               ng-model="clientMessage.Text"
                               rows="4"
+                              my-maxlength="140"
                               class="form-control 
                                      client-message-text-area standart-text-area textarea-without-resize" />
+                    <span>{{140 - clientMessage.Text.length}} chars remaining</span>
                 </div>
             </div>
             <div>
