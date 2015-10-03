@@ -11,13 +11,9 @@ namespace TwitterWebApplicationRepositories
 {
     public class FollowerRepository : Repository<Follower>
     {
-        protected IDbSet<Follower> DbSet { get; set; }
-        protected FollowerDbContext FollowerContext { get; set; }
-
-        public FollowerRepository(FollowerDbContext context) : base(context)
+        public FollowerRepository() : base(new FollowerDbContext())
         {
-            FollowerContext = context;
         }
-    }
 
+    }
 }

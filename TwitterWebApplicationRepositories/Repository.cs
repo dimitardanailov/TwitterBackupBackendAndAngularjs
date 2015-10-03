@@ -101,5 +101,20 @@ namespace TwitterWebApplicationRepositories
             DbEntityEntry entry = this.Context.Entry(entity);
             entry.State = EntityState.Detached;
         }
+
+        /// <summary>
+        /// Take records from <see cref="IEnumerable{T}"/> collection by <paramref name="maximClientMessagesPerPage"/>.
+        /// </summary>
+        /// <param name="entities"></param>
+        /// <param name="page">Which is current page</param>
+        /// <param name="maximRecordsPerPage">How many records show to be taked.</param>
+        /// <returns></returns>
+        public IEnumerable<TEntity> PaginateRecords(IEnumerable<TEntity> entities, int page, int maximRecordsPerPage)
+        {
+            int skip = maximRecordsPerPage * (page - 1);
+            var paginationEntities = entities.Skip(skip).Take(maximRecordsPerPage);
+
+            return paginationEntities;
+        }
     }
 }

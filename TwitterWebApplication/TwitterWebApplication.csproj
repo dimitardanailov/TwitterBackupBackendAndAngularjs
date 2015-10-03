@@ -206,6 +206,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Presentation\gradients.css" />
     <Content Include="Content\Presentation\icons.css" />
+    <Content Include="Content\Presentation\website.css" />
     <Content Include="Content\Structure\grids.css" />
     <Content Include="Content\Structure\website.css" />
     <Content Include="favicon.ico" />

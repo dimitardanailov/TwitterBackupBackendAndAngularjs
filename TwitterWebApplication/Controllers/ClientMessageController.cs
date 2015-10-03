@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
+using TwitterWebApplicationDBContexts;
 using TwitterWebApplicationEntities;
 using TwitterWebApplicationRepositories;
 
@@ -16,8 +17,11 @@ namespace TwitterWebApplication.Controllers
     [Authorize]
     public class ClientMessageController : ApplicationApiController<ClientMessage>
     {
+        private const int MaximClientMessagesPerPage = 50;
+
         public ClientMessageController() : base(new MessageRepository())
         {
+            
         }
 
         // POST api/ClientMessage
@@ -58,6 +62,20 @@ namespace TwitterWebApplication.Controllers
 
                 return this.BadRequest(this.ModelState);
             }
+        }
+
+        // GET api/ClientMessage
+        public IEnumerable<ClientMessage> Get()
+        {
+            string currentUserId = User.Identity.GetUserId();
+            int page = 1;
+
+            var messageRepository = this.repository as MessageRepository;
+
+            IEnumerable<ClientMessage> messages = messageRepository
+                .GetMessagesByUserIdPageAndOrderDirection(currentUserId, page, "desc", MaximClientMessagesPerPage);
+
+            return messages;
         }
     }
 }

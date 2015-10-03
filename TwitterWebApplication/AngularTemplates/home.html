@@ -34,8 +34,19 @@
 
             <h2>My Previous posts</h2>
 
-
-
+            <li ng-repeat="clientMessage in clientMessages" class="reset-list">
+                <div class="client-message-wrapper">
+                    <div>
+                        Name:
+                        {{ clientMessage.text }}
+                    </div>
+                    <div>
+                        Created at :
+                        {{ clientMessage.createdAt }}
+                    </div>
+                </div>
+                
+            </li>
         </div>
         <!-- END Right Cell -->
     </div>

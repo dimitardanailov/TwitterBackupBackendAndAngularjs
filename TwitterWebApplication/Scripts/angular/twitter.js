@@ -18,8 +18,17 @@
          * 
          * Main controller of the application.
          */
-        .controller('TwitterBackupHomePageCtrl', ['$scope', '$http', 'ClientMessage', 
-            function ($scope, $resource, ClientMessage) {
+        .controller('TwitterBackupHomePageCtrl', ['$scope', '$http', '$resource', 'ClientMessage',
+            function ($scope, $http, $resource, ClientMessage) {
+            
+            $scope.clientMessages = [];
+
+            $http.get("/api/ClientMessage").success(function (data, status, headers, config) {
+                $scope.clientMessages = data;
+            }).error(function (data, status, headers, config) {
+                alert("Please try again later.");
+            });
+
             // Create a empty ClientMessage object
             $scope.clientMessage = new ClientMessage({});
 
