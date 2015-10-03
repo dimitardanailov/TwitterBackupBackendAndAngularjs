@@ -26,6 +26,15 @@ namespace TwitterWebApplication
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new StyleBundle("~/Structure/css").Include(
+                      "~/Content/Structure/*.css"));
+
+            bundles.Add(new StyleBundle("~/Presentation/css").Include(
+                      "~/Content/Presentation/*.css"));
+
+            bundles.Add(new StyleBundle("~/MediaQueries/css").Include(
+                      "~/Content/MediaQueries/*.css"));
         }
     }
 }
