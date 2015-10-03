@@ -343,4 +343,8 @@ input[type="url"] {
     outline: medium none;
     resize: none;
 }
+
+.textarea-without-resize {
+    resize: none;
+}
 /************** Textarea ***********/

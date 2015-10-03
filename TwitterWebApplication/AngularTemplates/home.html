@@ -1,27 +1,29 @@
 ﻿<section>
-
     <!-- Grid C -->
     <div class="wrapper-grid-c">
         <!--- Left Cell --->
         <div class="wrapper-block-a">
-            <div>
+
+            <h2>Create a new tweet message: </h2>
+
+            <div class="form-group {{ formControlStyle }}">
                 <div>
-                    <span class="display-block">
-                        {{ errorMessage }}
-                    </span>
-                    <label class="display-block">
-                        Your twitter message :
+                    <label class="display-block control-label" for="clientMessage">
+                        Your message shoud be at least 10 characters :
                     </label>
-                    <span class="display-block">Your message shoud be at least 10 characters.</span>
-                </div>
-                <div>
+                    <span class="display-block"></span>
                     <textarea type="text"
+                              id="clientMessage"
                               ng-form=""
-                              ng-model="clientMessage.Text" />
+                              ng-model="clientMessage.Text"
+                              rows="4"
+                              class="form-control 
+                                     client-message-text-area standart-text-area textarea-without-resize" />
                 </div>
             </div>
             <div>
-                <button ng-click="save()">{{ savingButtonMessage }}</button>
+                <button ng-click="createClientMessage()" 
+                        class="standart-form-button icon-save button-type-light-silver">{{ savingButtonMessage }}</button>
             </div>
         </div>
         
@@ -35,14 +37,14 @@
             <h2>My Previous posts</h2>
 
             <li ng-repeat="clientMessage in clientMessages" class="reset-list">
-                <div class="client-message-wrapper">
-                    <div>
-                        Name:
-                        {{ clientMessage.text }}
-                    </div>
-                    <div>
-                        Created at :
-                        {{ clientMessage.createdAt }}
+                <div class="client-message-item-frame">
+                    <div class="client-message-item">
+                        <span class="display-block">
+                            {{ clientMessage.text }}
+                        </span>
+                        <span class="display-block client-message-item-date-info">
+                            {{ clientMessage.createdAt | date: 'HH:mm dd MMMM yyyy'  }}
+                        </span>
                     </div>
                 </div>
                 
@@ -51,5 +53,4 @@
         <!-- END Right Cell -->
     </div>
     <!-- END Grid C -->
-
 </section>

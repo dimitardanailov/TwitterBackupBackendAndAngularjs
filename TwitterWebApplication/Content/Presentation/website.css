@@ -1,9 +1,14 @@
-﻿.client-message-wrapper::after {
-    position: relative;
+﻿.client-message-item-frame {
+    background-color: rgba(0, 0, 0, .3);
+}
 
-    display: block;
-    width: 100%;
-    height: 1px;
+.client-message-item {
+    background-color: #fff;
+    text-indent: 1em;
+}
 
-    background-color: #ccc;
+.client-message-item-date-info {
+    font-weight: bold;
+    text-align: right;
+    margin-right: 1em; /** Should be equal to .client-message-item@text-indent **/
 }

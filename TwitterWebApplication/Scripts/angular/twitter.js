@@ -33,24 +33,22 @@
             $scope.clientMessage = new ClientMessage({});
 
             // Page elements and settings
-            $scope.errorMessage = '';
-            $scope.savingButtonMessage = 'Save!';
+            $scope.formControlStyle = '';
+            $scope.savingButtonMessage = 'Save';
 
             // Save message
-            $scope.save = function () {
+            $scope.createClientMessage = function () {
                 $scope.savingButtonMessage = 'Saving';
                 $scope.clientMessage.$save(function (responseMessage) {
-                    $scope.errorMessage = '';
+                    $scope.formControlStyle = 'has-success';
                     $scope.clientMessage = new ClientMessage({});
-                    $scope.savingButtonMessage = 'Save!';
+                    $scope.savingButtonMessage = 'Save';
 
-                    console.log(responseMessage);
+                    $scope.clientMessages.unshift(responseMessage);
 
                 }, function (error) {
-                    $scope.savingButtonMessage = 'Save!';
-                    if (error.hasOwnProperty('data') && error.data.hasOwnProperty('message')) {
-                        $scope.errorMessage = error.data.message;
-                    }
+                    $scope.formControlStyle = 'has-error';
+                    $scope.savingButtonMessage = 'Save';
                 });
             };
         }]); // END TwitterBackupHomePageCtrl
