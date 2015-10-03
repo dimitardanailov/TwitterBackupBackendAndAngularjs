@@ -22,17 +22,23 @@
             function ($scope, $resource, ClientMessage) {
             // Create a empty ClientMessage object
             $scope.clientMessage = new ClientMessage({});
+
+            // Page elements and settings
             $scope.errorMessage = '';
+            $scope.savingButtonMessage = 'Save!';
 
             // Save message
             $scope.save = function () {
+                $scope.savingButtonMessage = 'Saving';
                 $scope.clientMessage.$save(function (responseMessage) {
                     $scope.errorMessage = '';
                     $scope.clientMessage = new ClientMessage({});
+                    $scope.savingButtonMessage = 'Save!';
 
                     console.log(responseMessage);
 
                 }, function (error) {
+                    $scope.savingButtonMessage = 'Save!';
                     if (error.hasOwnProperty('data') && error.data.hasOwnProperty('message')) {
                         $scope.errorMessage = error.data.message;
                     }

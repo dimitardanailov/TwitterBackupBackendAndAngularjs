@@ -1,20 +1,44 @@
 ﻿<section>
-    <div>
-        <div>
-            <span>
-                {{ errorMessage }}
-            </span>
-            <label>
-                Please create a twitter message :
-            </label>
+
+    <!-- Grid C -->
+    <div class="wrapper-grid-c">
+        <!--- Left Cell --->
+        <div class="wrapper-block-a">
+            <div>
+                <div>
+                    <span class="display-block">
+                        {{ errorMessage }}
+                    </span>
+                    <label class="display-block">
+                        Your twitter message :
+                    </label>
+                    <span class="display-block">Your message shoud be at least 10 characters.</span>
+                </div>
+                <div>
+                    <textarea type="text"
+                              ng-form=""
+                              ng-model="clientMessage.Text" />
+                </div>
+            </div>
+            <div>
+                <button ng-click="save()">{{ savingButtonMessage }}</button>
+            </div>
         </div>
-        <div>
-            <textarea type="text" 
-                      ng-form=""
-                      ng-model="clientMessage.Text" />
+        
+        <!--- END Left Cell --->
+
+        <!-- Right Cell -->
+        <div class="wrapper-block-b">
+
+            <!-- Load my previous posts -->
+
+            <h2>My Previous posts</h2>
+
+
+
         </div>
+        <!-- END Right Cell -->
     </div>
-    <div>
-        <button ng-click="save()">Save!</button>
-    </div>
+    <!-- END Grid C -->
+
 </section>
