@@ -37,7 +37,12 @@ namespace TwitterWebApplication.Controllers
             {
                 this.repository.Insert(clientMessage);
 
-                return this.Ok<bool>(true);
+                // Update User information.
+                clientMessage.User = new ApplicationUser();
+                clientMessage.User.Id = currentUserId;
+                clientMessage.User.UserName = User.Identity.GetUserName();
+
+                return this.Ok<ClientMessage>(clientMessage);
             }
             catch (DbUpdateException /* dex */)
             {
