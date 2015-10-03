@@ -24,16 +24,23 @@
             $scope.clientMessage = new ClientMessage({});
             $scope.errorMessage = '';
 
+            /*
+            $scope.$watch("clientMessage", function (newValue, oldValue) {
+                if ($scope.errorMessage.length > 0 && (newValue !== oldValue)) {
+                    $scope.errorMessage = '';
+                }
+            }); */
+
             // Save message
             $scope.save = function () {
                 $scope.clientMessage.$save(function () {
                     $scope.clientMessage = new ClientMessage({});
                 }, function (error) {
-                    
+                    if (error.hasOwnProperty('data') && error.data.hasOwnProperty('message')) {
+                        $scope.errorMessage = error.data.message;
+                    }
                 });
             };
-
-            
         }]); // END TwitterBackupHomePageCtrl
 
     /**

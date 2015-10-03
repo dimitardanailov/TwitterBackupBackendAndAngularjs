@@ -98,6 +98,15 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="FollowerDbContext.cs" />
     <Compile Include="MessageDbContext.cs" />
+    <Compile Include="Migrations\201510021651200_CreateTableMessages.cs" />
+    <Compile Include="Migrations\201510021651200_CreateTableMessages.Designer.cs">
+      <DependentUpon>201510021651200_CreateTableMessages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201510030957010_AddDatetimeFieldsTableMessages.cs" />
+    <Compile Include="Migrations\201510030957010_AddDatetimeFieldsTableMessages.Designer.cs">
+      <DependentUpon>201510030957010_AddDatetimeFieldsTableMessages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -109,6 +118,14 @@
       <Project>{d4887ca1-d51e-43ac-a9e2-3b300bf3ada8}</Project>
       <Name>TwitterWebApplicationEntities</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201510021651200_CreateTableMessages.resx">
+      <DependentUpon>201510021651200_CreateTableMessages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201510030957010_AddDatetimeFieldsTableMessages.resx">
+      <DependentUpon>201510030957010_AddDatetimeFieldsTableMessages.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
