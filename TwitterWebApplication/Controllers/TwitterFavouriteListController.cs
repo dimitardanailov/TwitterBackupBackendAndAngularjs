@@ -1,10 +1,9 @@
 ﻿using System.Web.Http;
-using TwitterWebApplication.Models;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using TwitterApplicationLibrary;
 using TweetSharp;
+using TwitterWebApplicationDBContexts;
 
 namespace TwitterWebApplication.Controllers
 {

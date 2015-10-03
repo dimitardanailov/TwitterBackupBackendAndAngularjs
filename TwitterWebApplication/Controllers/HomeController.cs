@@ -15,7 +15,8 @@ namespace TwitterWebApplication.Controllers
             return View();
         }
 
-        public ActionResult FavouriteList()
+        [Authorize]
+        public ActionResult TwitterBackupHomePage()
         {
             return View();
         }

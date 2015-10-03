@@ -1,16 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TwitterWebApplication.Models;
 
 namespace TwitterWebApplicationEntities
 {
-    class Message : BaseModel
+    [Table("dbo.Messages")]
+    public class ClientMessage : BaseModel
     {
         [Key]
         public int MessageID { get; set; }
 
         // Foreign Key
-        [Required]
+        // [Required]
         [MaxLength(128, ErrorMessage = "UserID should be must be {0} characters or less")]
         public string UserID { get; set; }
 

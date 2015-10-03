@@ -1,0 +1,14 @@
+﻿.client-message-item-frame {
+    background-color: rgba(0, 0, 0, .3);
+}
+
+.client-message-item {
+    background-color: #fff;
+    text-indent: 1em;
+}
+
+.client-message-item-date-info {
+    font-weight: bold;
+    text-align: right;
+    margin-right: 1em; /** Should be equal to .client-message-item@text-indent **/
+}

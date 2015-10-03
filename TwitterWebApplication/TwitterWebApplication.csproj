@@ -187,6 +187,8 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationApiController.cs" />
+    <Compile Include="Controllers\ClientMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TwitterFavouriteListController.cs" />
@@ -194,14 +196,19 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AngularTemplates\home.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Presentation\gradients.css" />
+    <Content Include="Content\Presentation\icons.css" />
+    <Content Include="Content\Presentation\website.css" />
+    <Content Include="Content\Structure\grids.css" />
+    <Content Include="Content\Structure\website.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -209,7 +216,7 @@
     <Content Include="Scripts\angular-mocks.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
-    <Content Include="Scripts\app\twitter.js" />
+    <Content Include="Scripts\angular\twitter.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\angular.min.js.map" />
@@ -257,10 +264,20 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Home\FavouriteList.cshtml" />
+    <Content Include="Views\Home\TwitterBackupHomePage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\MediaQueries\Laptops\" />
+    <Folder Include="Content\MediaQueries\Phones and Handhelds\Galaxy Phones\" />
+    <Folder Include="Content\MediaQueries\Phones and Handhelds\HTC Phones\" />
+    <Folder Include="Content\MediaQueries\Phones and Handhelds\iPhones\" />
+    <Folder Include="Content\MediaQueries\Tablets\Galaxy Tablets\" />
+    <Folder Include="Content\MediaQueries\Tablets\iPads\" />
+    <Folder Include="Content\MediaQueries\Tablets\Kindle Fire\" />
+    <Folder Include="Content\MediaQueries\Tablets\Nexus Tablets\" />
+    <Folder Include="Content\MediaQueries\Wearables\Apple Watch\" />
+    <Folder Include="Content\MediaQueries\Wearables\Moto 360 Watch\" />
     <Folder Include="ProfileImages\" />
   </ItemGroup>
   <ItemGroup>
@@ -279,6 +296,18 @@
     <ProjectReference Include="..\TwitterApplicationLibrary\TwitterApplicationLibrary.csproj">
       <Project>{654bfa01-edbf-4c64-bcab-d70e6dd3dd58}</Project>
       <Name>TwitterApplicationLibrary</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitterWebApplicationDBContexts\TwitterWebApplicationDBContexts.csproj">
+      <Project>{669d8f3f-620f-4f4a-abd1-0c7f378a57db}</Project>
+      <Name>TwitterWebApplicationDBContexts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitterWebApplicationEntities\TwitterWebApplicationEntities.csproj">
+      <Project>{d4887ca1-d51e-43ac-a9e2-3b300bf3ada8}</Project>
+      <Name>TwitterWebApplicationEntities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TwitterWebApplicationRepositories\TwitterWebApplicationRepositories.csproj">
+      <Project>{f5a1d901-95da-4dbe-8ee6-d918fd2b3c20}</Project>
+      <Name>TwitterWebApplicationRepositories</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

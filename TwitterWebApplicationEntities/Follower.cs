@@ -1,10 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using TwitterWebApplication.Models;
 
 namespace TwitterWebApplicationEntities
 {
-    class Follower: BaseModel
+    public class Follower : BaseModel
     {
         [Key]
         public int FollowerID { get; set; }

@@ -4,9 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Structure/css")
+    @Styles.Render("~/Presentation/css")
+    @Styles.Render("~/MediaQueries/css")
+
+
     @Scripts.Render("~/bundles/modernizr")
 
+    <base href="/">
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -22,7 +29,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Favourite List", "FavouriteList", "Home")</li>
+                    <li>@Html.ActionLink("TwitterBackup HomePage", "TwitterBackupHomePage", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

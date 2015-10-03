@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TwitterWebApplicationEntities
 {
-    class BaseModel
+    public class BaseModel
     {
         public BaseModel()
         {

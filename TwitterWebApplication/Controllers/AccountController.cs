@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net;
 using System.IO;
+using TwitterWebApplicationEntities;
 
 namespace TwitterWebApplication.Controllers
 {
@@ -383,8 +384,6 @@ namespace TwitterWebApplication.Controllers
                         // Source: http://www.jerriepelser.com/blog/get-the-twitter-profile-image-using-the-asp-net-identity
                         await StoreAuthTokenClaims(user);
 
-                        await DownloadTwitterProfileImage(user.Id);
-
                         await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                         return RedirectToLocal(returnUrl);
                     }
@@ -494,6 +493,8 @@ namespace TwitterWebApplication.Controllers
                         await UserManager.AddClaimAsync(user.Id, tokenClaim);
                     }
                 }
+
+                await DownloadTwitterProfileImage(user.Id);
             }
         }
 
