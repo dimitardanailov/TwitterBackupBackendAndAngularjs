@@ -22,7 +22,7 @@ namespace TwitterWebApplication.Controllers
             base.Dispose(disposing);
         }
 
-        public IEnumerable<TwitterStatus> GetTwitters()
+        public IEnumerable<TwitterStatus> GetTweets()
         {
             var identity = (ClaimsIdentity) User.Identity;
             IEnumerable<Claim> claims = identity.Claims;
