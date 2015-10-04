@@ -19,11 +19,16 @@ namespace TwitterWebApplicationDBContexts.Migrations
 
             CreateIndex("dbo.Messages", "UserID");
             AddForeignKey("dbo.Messages", "UserID", "AspNetUsers", "Id");
-            
+
+            AddColumn("dbo.Messages", "CreatedAt", c => c.DateTime(nullable: false, storeType: "datetime"));
+            AddColumn("dbo.Messages", "UpdatedAt", c => c.DateTime(nullable: false, storeType: "datetime"));
         }
         
         public override void Down()
         {
+            DropColumn("dbo.Messages", "CreatedAt");
+            DropColumn("dbo.Messages", "UpdatedAt");
+
             DropIndex("dbo.Messages", "UserID");
             DropForeignKey("dbo.Messages", "UserID", "AspNetUsers");
             DropTable("dbo.Messagess");

@@ -97,13 +97,13 @@
     <Compile Include="ApplicationDbContext.cs" />
     <Compile Include="FollowerDbContext.cs" />
     <Compile Include="MessageDbContext.cs" />
-    <Compile Include="Migrations\201510021651200_CreateTableMessages.cs" />
-    <Compile Include="Migrations\201510021651200_CreateTableMessages.Designer.cs">
-      <DependentUpon>201510021651200_CreateTableMessages.cs</DependentUpon>
+    <Compile Include="Migrations\201510041304268_InitialCreate.cs" />
+    <Compile Include="Migrations\201510041304268_InitialCreate.Designer.cs">
+      <DependentUpon>201510041304268_InitialCreate.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201510030957010_AddDatetimeFieldsTableMessages.cs" />
-    <Compile Include="Migrations\201510030957010_AddDatetimeFieldsTableMessages.Designer.cs">
-      <DependentUpon>201510030957010_AddDatetimeFieldsTableMessages.cs</DependentUpon>
+    <Compile Include="Migrations\201510041306283_CreateTableMessages.cs" />
+    <Compile Include="Migrations\201510041306283_CreateTableMessages.Designer.cs">
+      <DependentUpon>201510041306283_CreateTableMessages.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,11 +119,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201510021651200_CreateTableMessages.resx">
-      <DependentUpon>201510021651200_CreateTableMessages.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510041304268_InitialCreate.resx">
+      <DependentUpon>201510041304268_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201510030957010_AddDatetimeFieldsTableMessages.resx">
-      <DependentUpon>201510030957010_AddDatetimeFieldsTableMessages.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201510041306283_CreateTableMessages.resx">
+      <DependentUpon>201510041306283_CreateTableMessages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

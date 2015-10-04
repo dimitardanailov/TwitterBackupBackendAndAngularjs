@@ -7,13 +7,13 @@ namespace TwitterWebApplicationDBContexts.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddDatetimeFieldsTableMessages : IMigrationMetadata
+    public sealed partial class CreateTableMessages : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddDatetimeFieldsTableMessages));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTableMessages));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510030957010_AddDatetimeFieldsTableMessages"; }
+            get { return "201510041306283_CreateTableMessages"; }
         }
         
         string IMigrationMetadata.Source

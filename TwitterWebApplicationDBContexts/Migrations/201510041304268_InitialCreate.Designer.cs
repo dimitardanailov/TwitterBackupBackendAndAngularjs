@@ -7,13 +7,13 @@ namespace TwitterWebApplicationDBContexts.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class CreateTableMessages : IMigrationMetadata
+    public sealed partial class InitialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(CreateTableMessages));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "201510021651200_CreateTableMessages"; }
+            get { return "201510041304268_InitialCreate"; }
         }
         
         string IMigrationMetadata.Source
