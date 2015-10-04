@@ -35,6 +35,11 @@ namespace TwitterWebApplication.Controllers
             SignInManager = signInManager;
         }
 
+        public AccountController(UserManager<ApplicationUser> @object)
+        {
+            this.@object = @object;
+        }
+
         public ApplicationSignInManager SignInManager
         {
             get
@@ -436,6 +441,7 @@ namespace TwitterWebApplication.Controllers
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
+        private UserManager<ApplicationUser> @object;
 
         private IAuthenticationManager AuthenticationManager
         {
