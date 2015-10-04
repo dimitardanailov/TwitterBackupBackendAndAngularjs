@@ -18,7 +18,7 @@ namespace TwitterWebApplication
             // Use the development version of Modernizr to develop with and learn from. Then, when you're
             // ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
-                        "~/Scripts/modernizr-*"));
+                        "~/Scripts/modernizr-2.6.2.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js",
@@ -29,13 +29,18 @@ namespace TwitterWebApplication
                       "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Structure/css").Include(
-                      "~/Content/Structure/*.css"));
+                      "~/Content/Structure/grids.css",
+                      "~/Content/Structure/website.css"));
 
             bundles.Add(new StyleBundle("~/Presentation/css").Include(
-                      "~/Content/Presentation/*.css"));
+                      "~/Content/Presentation/gradients.css",
+                      "~/Content/Presentation/icons.css",
+                      "~/Content/Presentation/website.css"));
 
+            /*
             bundles.Add(new StyleBundle("~/MediaQueries/css").Include(
                       "~/Content/MediaQueries/*.css"));
+            */
         }
     }
 }
