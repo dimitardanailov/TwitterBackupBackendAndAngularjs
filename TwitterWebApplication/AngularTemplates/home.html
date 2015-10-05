@@ -47,6 +47,7 @@
                         <span class="display-block client-message-item-date-info">
                             {{ clientMessage.createdAt | date: 'HH:mm dd MMMM yyyy'  }}
                         </span>
+                        <span ng-click="postMessageOnTwitter(clientMessage)">Post message on twitter</span>
                     </div>
                 </div>
                 
