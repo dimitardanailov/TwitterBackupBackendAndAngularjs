@@ -18,7 +18,11 @@ namespace UnitTestAccountController.Tests.Controllers
     [TestClass]
     public class AccountControllerTests
     {
+        /// <summary>
+        /// 
+        /// </summary>
         [TestMethod]
+        // Method is not completed.
         public void TestSuccessfulLogin()
         {
             // Arrange
@@ -57,6 +61,7 @@ namespace UnitTestAccountController.Tests.Controllers
         }
 
         [TestMethod]
+        // Method is not completed.
         public void TestUnsuccessfulLogin()
         {
             // Arrange
@@ -92,6 +97,7 @@ namespace UnitTestAccountController.Tests.Controllers
         }
 
         [TestMethod]
+        // Method is not completed.
         public void TestSuccessfulRegister()
         {
             // Arrange
