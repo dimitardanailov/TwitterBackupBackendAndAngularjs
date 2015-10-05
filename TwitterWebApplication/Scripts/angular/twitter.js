@@ -82,10 +82,10 @@
     function configuration($routeProvider, $locationProvider) {
         // Configure the routes
         $routeProvider
-            // Create a new tweet post
-            .when('api/tweet', {
-                controller: 'TwitterBackupAddTwitterMessageCtrl',
-                templateUrl: '../AngularTemplates/addTwitterMessage.html'
+            // View a client message.
+            .when('/ClientMessage/:clientmessage_id', {
+                controller: 'TwitterBackupClientMessageCtrl',
+                templateUrl: '/AngularTemplates/client-messages-details.html'
             })
 
             // Load information for home page of twitter
