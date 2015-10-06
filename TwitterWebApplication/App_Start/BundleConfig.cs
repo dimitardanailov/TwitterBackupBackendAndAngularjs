@@ -33,6 +33,7 @@ namespace TwitterWebApplication
                       "~/Content/Structure/website.css"));
 
             bundles.Add(new StyleBundle("~/Presentation/css").Include(
+                      "~/Content/Presentation/border-radius.css",
                       "~/Content/Presentation/gradients.css",
                       "~/Content/Presentation/icons.css",
                       "~/Content/Presentation/website.css"));

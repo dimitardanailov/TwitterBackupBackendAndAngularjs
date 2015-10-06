@@ -70,6 +70,28 @@
                     $scope.savingButtonMessage = 'Save';
                 });
             };
+
+            // Post message on twitter
+            $scope.postMessageOnTwitter = function (clientMessage) {
+
+                // Capitalize first letter
+                clientMessage = Object.withCapitalizeKeys(clientMessage);
+
+                $http.post("/api/Tweet",  clientMessage).success(function (data, status, headers, config) {
+                    if (data.hasOwnProperty('id')) {
+                        alert('Your twitter messages is: ' + data.id);
+                    }
+                }).error(function (error, status, headers, config) {
+                    var errorMessage = "Please try again later.";
+
+                    if (error.hasOwnProperty('message')) {
+                        errorMessage = error.message;
+                    }
+
+                    alert(errorMessage);
+                });
+            };
+
         }]); // END TwitterBackupHomePageCtrl
 
     /**
@@ -96,6 +118,26 @@
 
         // use the HTML5 History API
         $locationProvider.html5Mode(true);
+    }
+
+    /**
+     * Uppercase keys object keys.
+     */
+    Object.withCapitalizeKeys = function withCapitalizeKeys(object) {
+        // this solution ignores inherited properties
+        var newObject = {}, capitalizeKey = null;
+        for (var iterator in object) {
+            if (typeof iterator === 'string') {
+                capitalizeKey = capitalizeFirstLetter(iterator);
+                newObject[capitalizeKey] = object[iterator];
+            }
+        }
+
+        return newObject;
+    }
+
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
 })();
