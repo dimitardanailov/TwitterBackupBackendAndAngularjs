@@ -40,14 +40,27 @@
 
             <li ng-repeat="clientMessage in clientMessages" class="reset-list">
                 <div class="client-message-item-frame">
-                    <div class="client-message-item">
-                        <span class="display-block">
-                            {{ clientMessage.text }}
-                        </span>
-                        <span class="display-block client-message-item-date-info">
-                            {{ clientMessage.createdAt | date: 'HH:mm dd MMMM yyyy'  }}
-                        </span>
-                        <span ng-click="postMessageOnTwitter(clientMessage)">Post message on twitter</span>
+                    <div class="client-message-item-container">
+                        <div class="client-message-item">
+                            <span class="display-block client-message-item-text-info">
+                                {{ clientMessage.text }}
+                            </span>
+
+                            <div class="wrapper-grid-c client-message-item-tweet-datetime-wrapper">
+                                <div class="wrapper-block-a">
+                                    <span class="display-block">
+                                        <span ng-click="postMessageOnTwitter(clientMessage)"
+                                              class="twitter-share-button">Tweet</span>
+                                    </span>
+                                </div>
+
+                                <div class="wrapper-block-b">
+                                    <span class="display-block client-message-item-date-info">
+                                        {{ clientMessage.createdAt | date: 'HH:mm dd MMMM yyyy'  }}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 

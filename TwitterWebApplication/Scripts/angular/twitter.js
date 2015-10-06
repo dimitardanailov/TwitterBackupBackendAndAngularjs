@@ -78,7 +78,9 @@
                 clientMessage = Object.withCapitalizeKeys(clientMessage);
 
                 $http.post("/api/Tweet",  clientMessage).success(function (data, status, headers, config) {
-                    
+                    if (data.hasOwnProperty('id')) {
+                        alert('Your twitter messages is: ' + data.id);
+                    }
                 }).error(function (error, status, headers, config) {
                     var errorMessage = "Please try again later.";
 

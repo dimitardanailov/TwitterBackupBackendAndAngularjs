@@ -348,3 +348,11 @@ input[type="url"] {
     resize: none;
 }
 /************** Textarea ***********/
+
+.circle-button {
+    -webkit-border-radius: 100%;
+       -moz-border-radius: 100%;
+            border-radius: 100%;
+
+    cursor: pointer;
+}

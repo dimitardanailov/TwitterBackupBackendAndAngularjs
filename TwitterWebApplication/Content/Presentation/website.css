@@ -2,13 +2,35 @@
     background-color: rgba(0, 0, 0, .3);
 }
 
-.client-message-item {
+.client-message-item-container {
     background-color: #fff;
-    text-indent: 1em;
 }
 
 .client-message-item-date-info {
     font-weight: bold;
     text-align: right;
-    margin-right: 1em; /** Should be equal to .client-message-item@text-indent **/
+}
+
+.twitter-tweet-button {
+    border: .1em solid red;
+    cursor: pointer;
+    text-align: center;
+}
+
+.twitter-share-button {
+  border: .1em solid #ccc;
+  cursor: pointer;
+
+  /* Text */
+  font: bold 11px/17px Helvetica, Arial, sans-serif;
+  text-decoration: none;
+  color: #333;
+  text-shadow: 0 .1em 0 rgba(255, 255, 255, .5);
+  white-space: nowrap;
+}
+ 
+/* Color Highlight for keyboard navigation */
+.twitter-share-button:focus {
+  outline: none;
+  border-color: #0089cb;
 }

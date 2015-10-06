@@ -205,6 +205,7 @@
     <Content Include="AngularTemplates\home.html" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Presentation\border-radius.css" />
     <Content Include="Content\Presentation\gradients.css" />
     <Content Include="Content\Presentation\icons.css" />
     <Content Include="Content\Presentation\website.css" />
