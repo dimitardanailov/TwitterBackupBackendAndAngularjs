@@ -20,7 +20,7 @@ namespace TwitterWebApplicationEntities
         [ForeignKey("FollowedUserID")]
         public virtual ApplicationUser FollowedUser { get; set; }
 
-        [ForeignKey("FollowerUser")]
+        [ForeignKey("FollowerUserID")]
         public virtual ApplicationUser FollowerUser { get; set; }
     }
 }
