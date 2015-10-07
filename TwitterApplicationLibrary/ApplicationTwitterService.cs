@@ -40,7 +40,7 @@ namespace TwitterApplicationLibrary
 
             if (user == null)
             {
-                throw new Exception(string.Format("Application can't VerifyCredentials"));
+                throw new Exception(string.Format("Application can't VerifyCredentials. Please login agian in application."));
             }
 
             return service;

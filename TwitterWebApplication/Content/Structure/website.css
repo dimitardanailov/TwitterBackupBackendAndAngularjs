@@ -82,3 +82,25 @@
     display: block;
     margin: .5em auto;
 }
+
+.tweet-cell {
+    position: relative;
+
+    display: block;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.tweet-cell-wrapper {
+    position: relative;
+
+    display: block;
+    padding: .5em;
+}
+
+.tweet-cell-wrapper-text-information {
+    position: relative;
+
+    display: block;
+    margin: 0 .3em;
+}

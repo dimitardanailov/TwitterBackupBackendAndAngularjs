@@ -1,0 +1,31 @@
+﻿<section>
+    
+    <h2 class="text-align-center">Twitter wall</h2>
+
+    <ul class="reset-list tweets-wrapper">
+        <li ng-repeat="tweet in tweets" class="tweet-cell">
+            <div class="container-clear-floats tweet-cell-wrapper">
+                <div class="float-left">
+                    <img src="{{ tweet.profileImage }}" title="{{ tweet.username }}" alt="{{ tweet.username }}" 
+                            class="twitter-cell-profile-image" />
+                </div>
+                <div class="float-left tweet-cell-wrapper-text-information">
+                    <span class="display-block">
+                        <span class="bold">
+                            {{ tweet.name }}
+                        </span>
+                        <span>
+                            {{ tweet.username }}
+                        </span>
+                        <span>
+                            {{ tweet.created_at | date: 'dd MMMM yyyy HH:mm ' }}
+                        </span>
+                    </span>
+                    <span class="display-block">
+                        {{ tweet.text }}
+                    </span>
+                </div>
+            </div>
+        </li>
+    </ul>
+</section>

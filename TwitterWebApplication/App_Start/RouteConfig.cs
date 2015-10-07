@@ -13,6 +13,27 @@ namespace TwitterWebApplication
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+
+
+            /*** Angular routes ***/
+            Dictionary<string, string> angularRoutes = new Dictionary<string, string>();
+            angularRoutes["AngularHomePage"] = "angular/homepage";
+            angularRoutes["AngularTwitterwall"] = "angular/twitterwall";
+
+            foreach (KeyValuePair<string, string> entry in angularRoutes)
+            {
+                routes.MapRoute(
+                    name: entry.Key,
+                    url: entry.Value,
+                    defaults: new
+                    {
+                        controller = "Home",
+                        action = "TwitterBackupHomePage"
+                    }
+                );
+            }
+            /*** Angular routes ***/
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

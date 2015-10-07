@@ -1,4 +1,10 @@
-﻿.normal-border-radius {
+﻿.twitter-cell-profile-image {
+    -webkit-border-radius: .5em;
+       -moz-border-radius: .5em;
+            border-radius: .5em;
+}
+
+.normal-border-radius {
     -webkit-border-radius: 1em;
        -moz-border-radius: 1em;
             border-radius: 1em;
