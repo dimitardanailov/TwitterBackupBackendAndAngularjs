@@ -18,19 +18,29 @@
 }
 
 .twitter-share-button {
-  border: .1em solid #ccc;
-  cursor: pointer;
+    border: .1em solid #ccc;
+    cursor: pointer;
 
-  /* Text */
-  font: bold 11px/17px Helvetica, Arial, sans-serif;
-  text-decoration: none;
-  color: #333;
-  text-shadow: 0 .1em 0 rgba(255, 255, 255, .5);
-  white-space: nowrap;
+    /* Text */
+    font: bold 11px/17px Helvetica, Arial, sans-serif;
+    text-decoration: none;
+    color: #333;
+    text-shadow: 0 .1em 0 rgba(255, 255, 255, .5);
+    white-space: nowrap;
 }
  
 /* Color Highlight for keyboard navigation */
 .twitter-share-button:focus {
-  outline: none;
-  border-color: #0089cb;
+    outline: none;
+    border-color: #0089cb;
+}
+
+.tweet-cell {
+     border-right: .1em solid #ccc;
+    border-bottom: .1em solid #ccc;
+      border-left: .1em solid #ccc;   
+}
+
+.tweets-wrapper > .tweet-cell:first-child {
+    border-top: .1em solid #ccc;   
 }

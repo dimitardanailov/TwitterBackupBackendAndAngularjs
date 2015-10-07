@@ -4,9 +4,9 @@
     configuration.$inject = ['$routeProvider', '$locationProvider'];
 
     angular.module('TwitterBackup', ['ngResource', 'ngRoute'])
-        .config(configuration)     
+        .config(configuration)
 
-        .directive('myMaxlength', function() {
+        .directive('myMaxlength', function () {
             return {
                 require: 'ngModel',
                 link: function (scope, element, attrs, ngModelCtrl) {
@@ -17,19 +17,19 @@
                             ngModelCtrl.$setViewValue(transformedInput);
                             ngModelCtrl.$render();
                             return transformedInput;
-                        } 
+                        }
                         return text;
                     }
                     ngModelCtrl.$parsers.push(fromUser);
                 }
-            }; 
+            };
         })
 
-        .factory('ClientMessage', function($resource) {
+        .factory('ClientMessage', function ($resource) {
             var message = $resource('/api/ClientMessage/:id', { id: '@id.clean' });
-            
+
             return message;
-        })   
+        })
         /**
          * @ngdoc overview
          * @name TwitterBackup:controller:TwitterBackupCtrl
@@ -39,61 +39,83 @@
          */
         .controller('TwitterBackupHomePageCtrl', ['$scope', '$http', '$resource', 'ClientMessage',
             function ($scope, $http, $resource, ClientMessage) {
-            
-            $scope.clientMessages = [];
 
-            $http.get("/api/ClientMessage").success(function (data, status, headers, config) {
-                $scope.clientMessages = data;
-            }).error(function (data, status, headers, config) {
-                alert("Please try again later.");
-            });
+                $scope.clientMessages = [];
 
-            // Create a empty ClientMessage object
-            $scope.clientMessage = new ClientMessage({});
-
-            // Page elements and settings
-            $scope.formControlStyle = '';
-            $scope.savingButtonMessage = 'Save';
-
-            // Save message
-            $scope.createClientMessage = function () {
-                $scope.savingButtonMessage = 'Saving';
-                $scope.clientMessage.$save(function (responseMessage) {
-                    $scope.formControlStyle = 'has-success';
-                    $scope.clientMessage = new ClientMessage({});
-                    $scope.savingButtonMessage = 'Save';
-
-                    $scope.clientMessages.unshift(responseMessage);
-
-                }, function (error) {
-                    $scope.formControlStyle = 'has-error';
-                    $scope.savingButtonMessage = 'Save';
+                $http.get("/api/ClientMessage").success(function (data, status, headers, config) {
+                    $scope.clientMessages = data;
+                }).error(function (data, status, headers, config) {
+                    alert("Please try again later.");
                 });
-            };
 
-            // Post message on twitter
-            $scope.postMessageOnTwitter = function (clientMessage) {
+                // Create a empty ClientMessage object
+                $scope.clientMessage = new ClientMessage({});
 
-                // Capitalize first letter
-                clientMessage = Object.withCapitalizeKeys(clientMessage);
+                // Page elements and settings
+                $scope.formControlStyle = '';
+                $scope.savingButtonMessage = 'Save';
 
-                $http.post("/api/Tweet",  clientMessage).success(function (data, status, headers, config) {
-                    if (data.hasOwnProperty('id')) {
-                        alert('Your twitter messages is: ' + data.id);
-                    }
-                }).error(function (error, status, headers, config) {
-                    var errorMessage = "Please try again later.";
+                // Save message
+                $scope.createClientMessage = function () {
+                    $scope.savingButtonMessage = 'Saving';
+                    $scope.clientMessage.$save(function (responseMessage) {
+                        $scope.formControlStyle = 'has-success';
+                        $scope.clientMessage = new ClientMessage({});
+                        $scope.savingButtonMessage = 'Save';
 
-                    if (error.hasOwnProperty('message')) {
-                        errorMessage = error.message;
-                    }
+                        $scope.clientMessages.unshift(responseMessage);
 
-                    alert(errorMessage);
+                    }, function (error) {
+                        $scope.formControlStyle = 'has-error';
+                        $scope.savingButtonMessage = 'Save';
+                    });
+                };
+
+                // Post message on twitter
+                $scope.postMessageOnTwitter = function (clientMessage) {
+
+                    // Capitalize first letter
+                    clientMessage = Object.withCapitalizeKeys(clientMessage);
+
+                    $http.post("/api/Tweet", clientMessage).success(function (data, status, headers, config) {
+                        if (data.hasOwnProperty('id')) {
+                            alert('Your twitter messages is: ' + data.id);
+                        }
+                    }).error(function (error, status, headers, config) {
+                        alert("Please try again later. If you problem is still able, please re-sign up.");
+
+                        if (error.hasOwnProperty('message')) {
+                            errorMessage = error.message;
+                        }
+
+                        alert(errorMessage);
+                    });
+                };
+
+            }]) // END TwitterBackupHomePageCtrl
+
+            /**
+             * @ngdoc overview
+             * @name TwitterBackup:controller:TwitterBackupCtrl
+             * @description
+             * 
+             * Main controller of the application.
+             */
+            .controller('TwitterWallCtrl', ['$scope', '$http', function ($scope, $http) {
+
+                $scope.tweets = [];
+
+                $http.get("/api/TwitterWall/GetTweets").success(function (data, status, headers, config) {
+                    $scope.tweets = data;
+
+                    console.log(data);
+
+                }).error(function (data, status, headers, config) {
+                    alert("Please try again later. If you problem is still able, please re-sign up.");
                 });
-            };
-
-        }]); // END TwitterBackupHomePageCtrl
-
+                
+            }]);
+    
     /**
     * @ngdoc overview
     * @name Angularjs::routes configuration
@@ -104,6 +126,13 @@
     function configuration($routeProvider, $locationProvider) {
         // Configure the routes
         $routeProvider
+
+            // View your twitter newsletters
+            .when('/angular/twitterwall', {
+                controller: 'TwitterWallCtrl',
+                templateUrl: '/AngularTemplates/twitter-wall.html'
+            })
+
             // View a client message.
             .when('/ClientMessage/:clientmessage_id', {
                 controller: 'TwitterBackupClientMessageCtrl',
@@ -111,7 +140,7 @@
             })
 
             // Load information for home page of twitter
-            .when('/Home/TwitterBackupHomePage', {
+            .when('/angular/homepage', {
                 controller: 'TwitterBackupHomePageCtrl',
                 templateUrl: '/AngularTemplates/home.html'
             });

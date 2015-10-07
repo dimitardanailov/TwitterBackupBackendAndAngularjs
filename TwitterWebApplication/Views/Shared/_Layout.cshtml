@@ -26,7 +26,30 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("TwitterBackup HomePage", "TwitterBackupHomePage", "Home")</li>
+                    <li>
+                        @Html.RouteLink(
+                            "TwitterBackup HomePage",
+                            "AngularHomePage",
+                            null,
+                            htmlAttributes: new
+                            {
+                                @class = "",
+                                @title = "HomePage",
+                            }
+                        )
+                    </li>
+                    <li>
+                        @Html.RouteLink(
+                            "Twitter Wall",
+                            "AngularTwitterwall",
+                            null,
+                            htmlAttributes: new
+                            {
+                                @class = "",
+                                @title = "HomePage",
+                            }
+                        )
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
