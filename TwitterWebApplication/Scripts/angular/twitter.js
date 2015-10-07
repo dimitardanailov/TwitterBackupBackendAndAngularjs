@@ -82,7 +82,7 @@
                             alert('Your twitter messages is: ' + data.id);
                         }
                     }).error(function (error, status, headers, config) {
-                        alert("Please try again later. If you problem is still able, please re-sign up.");
+                        errorMessage = 'Please try again later. If you problem is still able, please re-sign up.';
 
                         if (error.hasOwnProperty('message')) {
                             errorMessage = error.message;
