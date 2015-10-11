@@ -35,9 +35,9 @@ namespace TwitterWebApplication.Controllers
             SignInManager = signInManager;
         }
 
-        public AccountController(UserManager<ApplicationUser> @object)
+        public AccountController(UserManager<ApplicationUser> userManager)
         {
-            this.@object = @object;
+            _userManager = userManager;
         }
 
         public ApplicationSignInManager SignInManager

@@ -19,6 +19,28 @@ namespace UnitTestAccountController.Tests.Controllers
     public class AccountControllerTests
     {
         /// <summary>
+        /// MockupUser will store all information for easy and fast access.
+        /// </summary>
+        private class MockupUser
+        {
+            public string Email { get; set; }
+            public string Password { get; set; }
+            public string InvalidPassword { get; set; }
+            public bool RememberMe { get; set; }
+
+            public MockupUser(string Email, string Password, string InvalidPassword, bool RememberMe)
+            {
+                this.Email = Email;
+                this.Password = Password;
+                this.InvalidPassword = InvalidPassword;
+                this.RememberMe = RememberMe;
+            }
+        }
+
+        private readonly MockupUser mockupUser = new MockupUser("myemail@test.com", "mypassword", "myinvalidpassword", false);
+        private const string returnURL = "/";
+
+        /// <summary>
         /// 
         /// </summary>
         [TestMethod]
@@ -29,11 +51,11 @@ namespace UnitTestAccountController.Tests.Controllers
             var userStore = new Mock<IUserStore<ApplicationUser>>();
             var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object);
             var loginModel = new LoginViewModel {
-                Email = "myemail@test.com",
-                Password = "b",
+                Email = mockupUser.Email,
+                Password = mockupUser.Password,
                 RememberMe = false
             };
-            var returnUrl = "/foo";
+
             var user = new ApplicationUser
             {
                 UserName = loginModel.Email
@@ -49,12 +71,12 @@ namespace UnitTestAccountController.Tests.Controllers
             var helper = new MvcMockHelper(controller);
 
             // Act
-            var actionResult = controller.Login(loginModel, returnUrl).Result;
+            var actionResult = controller.Login(loginModel, returnURL).Result;
 
             // Assert
             var redirectResult = actionResult as RedirectResult;
             Assert.IsNotNull(redirectResult);
-            Assert.AreEqual(returnUrl, redirectResult.Url);
+            Assert.AreEqual(returnURL, redirectResult.Url);
 
             Assert.AreEqual(loginModel.Email, helper.OwinContext.Authentication.AuthenticationResponseGrant.Identity.Name);
             Assert.AreEqual(DefaultAuthenticationTypes.ExternalCookie, helper.OwinContext.Authentication.AuthenticationResponseRevoke.AuthenticationTypes.First());
@@ -69,11 +91,10 @@ namespace UnitTestAccountController.Tests.Controllers
             var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object);
             var loginModel = new LoginViewModel
             {
-                Email = "myemail@test.com",
-                Password = "b",
-                RememberMe = false
+                Email = mockupUser.Email,
+                Password = mockupUser.InvalidPassword,
+                RememberMe = mockupUser.RememberMe
             };
-            var returnUrl = "/foo";
             var user = new ApplicationUser
             {
                 UserName = loginModel.Email
@@ -88,7 +109,7 @@ namespace UnitTestAccountController.Tests.Controllers
             var helper = new MvcMockHelper(controller);
 
             // Act
-            var actionResult = controller.Login(loginModel, returnUrl).Result;
+            var actionResult = controller.Login(loginModel, returnURL).Result;
 
             // Assert
             Assert.IsTrue(actionResult is ViewResult);
@@ -102,12 +123,12 @@ namespace UnitTestAccountController.Tests.Controllers
         {
             // Arrange
             var userStore = new Mock<IUserStore<ApplicationUser>>();
-            var userManager = new Mock<UserManager<ApplicationUser>>(userStore.Object);
+            var userManager = new Mock<UserManager<ApplicationUser>>();
             var registerModel = new RegisterViewModel
             {
-                Email = "myemail@test.com",
-                Password = "mysecurepassword",
-                ConfirmPassword = "mysecurepassword"
+                Email = mockupUser.Email,
+                Password = mockupUser.Password,
+                ConfirmPassword = mockupUser.Password
             };
             var result = IdentityResult.Success;
             var identity = new ClaimsIdentity(DefaultAuthenticationTypes.ApplicationCookie);
@@ -116,7 +137,7 @@ namespace UnitTestAccountController.Tests.Controllers
             userManager.Setup(um => um.CreateAsync(It.IsAny<ApplicationUser>(), registerModel.Password)).Returns(Task.FromResult(result));
             userManager.Setup(um => um.CreateIdentityAsync(It.IsAny<ApplicationUser>(), DefaultAuthenticationTypes.ApplicationCookie)).Returns(Task.FromResult(identity));
 
-            var controller = new AccountController(userManager.Object);
+            var controller = new AccountController();
             var helper = new MvcMockHelper(controller);
 
             // Act
