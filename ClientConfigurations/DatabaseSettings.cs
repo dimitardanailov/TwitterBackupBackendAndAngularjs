@@ -9,5 +9,8 @@ namespace ClientConfigurations
     public class DatabaseSettings
     {
         public const string ConnectionString = "DefaultConnection";
+
+        public readonly static string MongoDBServerLocation = AppSettings.Setting<string>("MongoDBServerLocation");
+        public readonly static string MongoDBDatabase = AppSettings.Setting<string>("MongoDBDatabase");
     }
 }

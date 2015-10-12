@@ -191,6 +191,7 @@
     <Compile Include="Controllers\ClientMessageController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MongoDbMessageController.cs" />
     <Compile Include="Controllers\TweetController.cs" />
     <Compile Include="Controllers\TwitterFavouriteListController.cs" />
     <Compile Include="Controllers\TwitterWallController.cs" />

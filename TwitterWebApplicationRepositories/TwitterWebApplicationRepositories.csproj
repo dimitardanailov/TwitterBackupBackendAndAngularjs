@@ -106,11 +106,17 @@
     <Compile Include="FollowerRepository.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="MessageRepository.cs" />
-    <Compile Include="MongoDBRepository.cs" />
+    <Compile Include="MongoDb\interfaces\IMessageRepository.cs" />
+    <Compile Include="MongoDb\MongoDbMessageRepository.cs" />
+    <Compile Include="MongoDb\MongoDbRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ClientConfigurations\ClientConfigurations.csproj">
+      <Project>{a9abadd4-a957-4ecb-a83d-92dad3503d0c}</Project>
+      <Name>ClientConfigurations</Name>
+    </ProjectReference>
     <ProjectReference Include="..\TwitterWebApplicationDBContexts\TwitterWebApplicationDBContexts.csproj">
       <Project>{669d8f3f-620f-4f4a-abd1-0c7f378a57db}</Project>
       <Name>TwitterWebApplicationDBContexts</Name>

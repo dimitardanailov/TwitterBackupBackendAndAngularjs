@@ -49,6 +49,11 @@ Our need to have `Security/AppSettingsSecrets.config`.
 	<add key="TwitterConsumerKey" value="AppTwitterConsumerKey"/>
 	<add key="TwitterConsumerSecret" value="AppTwitterConsumerSecret" />
 	<!-- Twitter -->
+
+	<!-- MongoDB -->
+	<add key="MongoDBServerLocation" value="MongodbLocation"/>
+	<add key="MongoDBDatabase" value="DatabaseName"/>
+	<!-- MongoDB -->
 	  
 </appSettings>
 ```
