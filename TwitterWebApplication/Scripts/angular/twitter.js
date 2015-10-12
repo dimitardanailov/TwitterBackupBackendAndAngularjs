@@ -25,11 +25,76 @@
             };
         })
 
+        // Source and Idea: http://blog.revolunet.com/blog/2014/02/14/angularjs-services-inheritance/
+        .factory('BaseFactoryMessage', ['$resource', '$rootScope', function ($resource, $rootScope) {
+            var messages = []; // Pointer to $scope.clientMessages
+            var formControlStyle = '';
+            var buttonTextMessage = '';
+            var dbReference = '';
+            var message = null;
+
+            var BaseFactoryMessage = function (URI, messages, formControlStyle, buttonTextMessage) {
+                this.messages = messages;
+                this.formControlStyle = formControlStyle;
+                this.buttonTextMessage = buttonTextMessage;
+                this.dbReference = $resource(URI, { id: '@id.clean' });
+                this.message = new this.dbReference({});
+            };
+
+            BaseFactoryMessage.prototype.setMessages = function (messages) {
+                this.messages = messages;
+            };
+
+            BaseFactoryMessage.prototype.saveRecordToDabase = function () {
+                var defaultMessage = this.buttonTextMessage;
+                this.buttonTextMessage = 'Saving';
+                var _this = this;
+
+                this.message.$save(function (responseMessage) {
+                    _this.formControlStyle = 'has-success';
+                    _this.message = new _this.dbReference({});
+                    _this.buttonTextMessage = defaultMessage;
+
+                    console.log(responseMessage);
+
+                    if (_this.messages instanceof Array) {
+                        _this.messages.unshift(responseMessage);
+                    }
+                }, function (error) {
+                    _this.formControlStyle = 'has-error';
+                    _this.buttonTextMessage = defaultMessage;
+                });
+            };
+
+            return BaseFactoryMessage;
+        }])
+
         .factory('ClientMessage', function ($resource) {
             var message = $resource('/api/ClientMessage/:id', { id: '@id.clean' });
 
             return message;
         })
+
+        .factory('MongoDbMessage', function ($resource, BaseFactoryMessage) {
+            // create our new custom object that reuse the original object constructor
+            var MongoDbMessage = function () {
+                BaseFactoryMessage.apply(this, arguments);
+            };
+
+            // reuse the original object prototype
+            BaseFactoryMessage.prototype = new BaseFactoryMessage();
+
+            MongoDbMessage.prototype.save = function () {
+                BaseFactoryMessage.prototype.saveRecordToDabase.call(this);
+            };
+
+            MongoDbMessage.prototype.setMessages = function (messages) {
+                BaseFactoryMessage.prototype.setMessages.call(this, messages);
+            };
+
+            return MongoDbMessage;
+        })
+
         /**
          * @ngdoc overview
          * @name TwitterBackup:controller:TwitterBackupCtrl
@@ -37,13 +102,17 @@
          * 
          * Main controller of the application.
          */
-        .controller('TwitterBackupHomePageCtrl', ['$scope', '$http', '$resource', 'ClientMessage',
-            function ($scope, $http, $resource, ClientMessage) {
+        .controller('TwitterBackupHomePageCtrl', ['$scope', '$http', '$resource', 'ClientMessage', 'MongoDbMessage',
+            function ($scope, $http, $resource, ClientMessage, MongoDbMessage) {
+
+                // Create a empty ClientMessage object
+                $scope.mongoDbMessage = new MongoDbMessage('/api/MongoDbMessage/:id', $scope.clientMessages, '', 'Save to MongoDB');
 
                 $scope.clientMessages = [];
 
                 $http.get("/api/ClientMessage").success(function (data, status, headers, config) {
                     $scope.clientMessages = data;
+                    $scope.mongoDbMessage.setMessages($scope.clientMessages);
                 }).error(function (data, status, headers, config) {
                     alert("Please try again later.");
                 });
@@ -147,7 +216,7 @@
 
         // use the HTML5 History API
         $locationProvider.html5Mode(true);
-    }
+    };
 
     /**
      * Uppercase keys object keys.
@@ -163,10 +232,9 @@
         }
 
         return newObject;
-    }
+    };
 
     function capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
-    }
-
+    };
 })();

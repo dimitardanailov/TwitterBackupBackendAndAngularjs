@@ -4,29 +4,59 @@
         <!--- Left Cell --->
         <div class="wrapper-block-a">
 
-            <h2>Create a new tweet message: </h2>
-
-            <div class="form-group {{ formControlStyle }}">
-                <div>
-                    <label class="display-block control-label" for="clientMessage">
-                        Your message shoud be at least 10 characters :
-                    </label>
-                    <span class="display-block"></span>
-                    <textarea type="text"
-                              id="clientMessage"
-                              ng-form=""
-                              ng-model="clientMessage.Text"
-                              rows="4"
-                              my-maxlength="140"
-                              class="form-control 
+            <section>
+                <h2>Create a new tweet message: </h2>
+                <div class="form-group {{ formControlStyle }}">
+                    <div>
+                        <label class="display-block control-label" for="clientMessage">
+                            Your message shoud be at least 10 characters :
+                        </label>
+                        <span class="display-block"></span>
+                        <textarea type="text"
+                                  id="clientMessage"
+                                  ng-form=""
+                                  ng-model="clientMessage.Text"
+                                  rows="4"
+                                  my-maxlength="140"
+                                  class="form-control
                                      client-message-text-area standart-text-area textarea-without-resize" />
-                    <span>{{140 - clientMessage.Text.length}} chars remaining</span>
+                        <span>{{140 - clientMessage.Text.length}} chars remaining</span>
+                    </div>
                 </div>
-            </div>
-            <div>
-                <button ng-click="createClientMessage()" 
-                        class="standart-form-button icon-save button-type-light-silver">{{ savingButtonMessage }}</button>
-            </div>
+                <div>
+                    <button ng-click="createClientMessage()"
+                            class="standart-form-button icon-save button-type-light-silver">
+                        {{ savingButtonMessage }}
+                    </button>
+                </div>
+            </section>
+            
+            <section>
+                <h2>Create a new tweet message: </h2>
+                <div class="form-group {{ mongoDbMessage.formControlStyle }}">
+                    <div>
+                        <label class="display-block control-label" for="mongoDbMessage">
+                            Your message shoud be at least 10 characters:
+                        </label>
+                        <span class="display-block"></span>
+                        <textarea type="text"
+                                  id="mongoDbMessage"
+                                  ng-form=""
+                                  ng-model="mongoDbMessage.message.Text"
+                                  rows="4"
+                                  my-maxlength="140"
+                                  class="form-control
+                                     client-message-text-area standart-text-area textarea-without-resize" />
+                        <span>{{140 - mongoDbMessage.message.Text.length }} chars remaining</span>
+                    </div>
+                </div>
+                <div>
+                    <button ng-click="mongoDbMessage.save()"
+                            class="standart-form-button icon-save button-type-light-silver">
+                        {{ mongoDbMessage.buttonTextMessage }}
+                    </button>
+                </div>
+            </section>
         </div>
         
         <!--- END Left Cell --->
@@ -44,7 +74,12 @@
                         <div class="client-message-item-container">
                             <div class="client-message-item">
                                 <span class="display-block client-message-item-text-info">
-                                    {{ clientMessage.text }}
+                                    <span class="display-block bold">
+                                        Message ID: {{ clientMessage.messageID }}
+                                    </span>
+                                    <span class="display-block">
+                                        {{ clientMessage.text }}
+                                    </span>
                                 </span>
                                 <div class="wrapper-grid-c client-message-item-tweet-datetime-wrapper">
                                     <div class="wrapper-block-a">

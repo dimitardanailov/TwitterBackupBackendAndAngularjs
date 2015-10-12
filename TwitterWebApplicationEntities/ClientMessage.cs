@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace TwitterWebApplicationEntities
 {
     [Table("dbo.Messages")]
-    public class ClientMessage : BaseModel
+    public class ClientMessage : BaseModel, IMessageEntity
     {
         [Key]
         public int MessageID { get; set; }
