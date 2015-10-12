@@ -25,6 +25,7 @@ namespace TwitterWebApplicationRepositories
         public MongoDbRepository(string collection)
         {
             _client = new MongoClient(DatabaseSettings.MongoDBServerLocation);
+            // Get a reference to a server object from the Mongo client 
             _server = _client.GetServer();
             _database = _server.GetDatabase(DatabaseSettings.MongoDBDatabase, WriteConcern.Unacknowledged);
 
