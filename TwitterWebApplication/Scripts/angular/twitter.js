@@ -69,13 +69,27 @@
             return BaseFactoryMessage;
         }])
 
-        .factory('ClientMessage', function ($resource) {
-            var message = $resource('/api/ClientMessage/:id', { id: '@id.clean' });
+        .factory('ClientMessage', ['BaseFactoryMessage', function (BaseFactoryMessage) {
+            // create our new custom object that reuse the original object constructor
+            var ClientMessage = function () {
+                BaseFactoryMessage.apply(this, arguments);
+            };
+            
+            // reuse the original object prototype
+            BaseFactoryMessage.prototype = new BaseFactoryMessage();
 
-            return message;
-        })
+            ClientMessage.prototype.save = function () {
+                BaseFactoryMessage.prototype.saveRecordToDabase.call(this);
+            };
 
-        .factory('MongoDbMessage', function ($resource, BaseFactoryMessage) {
+            ClientMessage.prototype.setMessages = function (messages) {
+                BaseFactoryMessage.prototype.setMessages.call(this, messages);
+            };
+
+            return ClientMessage;
+        }])
+
+        .factory('MongoDbMessage', ['BaseFactoryMessage', function (BaseFactoryMessage) {
             // create our new custom object that reuse the original object constructor
             var MongoDbMessage = function () {
                 BaseFactoryMessage.apply(this, arguments);
@@ -93,7 +107,7 @@
             };
 
             return MongoDbMessage;
-        })
+        }])
 
         /**
          * @ngdoc overview
@@ -104,41 +118,25 @@
          */
         .controller('TwitterBackupHomePageCtrl', ['$scope', '$http', '$resource', 'ClientMessage', 'MongoDbMessage',
             function ($scope, $http, $resource, ClientMessage, MongoDbMessage) {
+                
+                $scope.clientMessages = [];
 
-                // Create a empty ClientMessage object
+                // Create an empty MongoDbMessage object
                 $scope.mongoDbMessage = new MongoDbMessage('/api/MongoDbMessage/:id', $scope.clientMessages, '', 'Save to MongoDB');
 
-                $scope.clientMessages = [];
+                // Create an empty ClientMessage object
+                $scope.clientMessage = new ClientMessage('/api/ClientMessage/:id', $scope.clientMessages, '', 'Save to MSSQL');
 
                 $http.get("/api/ClientMessage").success(function (data, status, headers, config) {
                     $scope.clientMessages = data;
+
+                    // Update reference.
                     $scope.mongoDbMessage.setMessages($scope.clientMessages);
+                    $scope.clientMessage.setMessages($scope.clientMessages);
+
                 }).error(function (data, status, headers, config) {
                     alert("Please try again later.");
                 });
-
-                // Create a empty ClientMessage object
-                $scope.clientMessage = new ClientMessage({});
-
-                // Page elements and settings
-                $scope.formControlStyle = '';
-                $scope.savingButtonMessage = 'Save';
-
-                // Save message
-                $scope.createClientMessage = function () {
-                    $scope.savingButtonMessage = 'Saving';
-                    $scope.clientMessage.$save(function (responseMessage) {
-                        $scope.formControlStyle = 'has-success';
-                        $scope.clientMessage = new ClientMessage({});
-                        $scope.savingButtonMessage = 'Save';
-
-                        $scope.clientMessages.unshift(responseMessage);
-
-                    }, function (error) {
-                        $scope.formControlStyle = 'has-error';
-                        $scope.savingButtonMessage = 'Save';
-                    });
-                };
 
                 // Post message on twitter
                 $scope.postMessageOnTwitter = function (clientMessage) {

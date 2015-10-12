@@ -6,7 +6,7 @@
 
             <section>
                 <h2>Create a new tweet message: </h2>
-                <div class="form-group {{ formControlStyle }}">
+                <div class="form-group {{ clientMessage.formControlStyle }}">
                     <div>
                         <label class="display-block control-label" for="clientMessage">
                             Your message shoud be at least 10 characters :
@@ -15,18 +15,18 @@
                         <textarea type="text"
                                   id="clientMessage"
                                   ng-form=""
-                                  ng-model="clientMessage.Text"
+                                  ng-model="clientMessage.message.Text"
                                   rows="4"
                                   my-maxlength="140"
                                   class="form-control
                                      client-message-text-area standart-text-area textarea-without-resize" />
-                        <span>{{140 - clientMessage.Text.length}} chars remaining</span>
+                        <span>{{140 - clientMessage.message.Text.length}} chars remaining</span>
                     </div>
                 </div>
                 <div>
-                    <button ng-click="createClientMessage()"
+                    <button ng-click="clientMessage.save()"
                             class="standart-form-button icon-save button-type-light-silver">
-                        {{ savingButtonMessage }}
+                        {{ clientMessage.buttonTextMessage }}
                     </button>
                 </div>
             </section>
